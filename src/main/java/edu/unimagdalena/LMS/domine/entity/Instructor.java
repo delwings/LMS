@@ -1,4 +1,4 @@
-package edu.unimagdalena.LMS.entity;
+package edu.unimagdalena.LMS.domine.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-@Table(name = "STUDENTS")
+@Table(name = "INSTRUCTORS")
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
-public class Student {
+public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
@@ -26,9 +26,9 @@ public class Student {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @OneToMany(mappedBy = "student")
-    private List<Enrollment> enrollments;
+    @OneToOne(mappedBy = "instructor")
+    private Instructor_profile profile;
 
-    @OneToMany(mappedBy = "student")
-    private List<Assessment> assessments;
+    @OneToMany(mappedBy = "instructor")
+    private List<Course> courses;
 }
